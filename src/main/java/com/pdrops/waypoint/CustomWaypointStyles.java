@@ -10,6 +10,7 @@ public class CustomWaypointStyles {
 
     private static final RegistryKey<? extends Registry<WaypointStyle>> REGISTRY = RegistryKey.ofRegistry(Identifier.ofVanilla("waypoint_style_asset"));
     public static RegistryKey<WaypointStyle> DEATH_FACE  = of("death_face");
+    public static RegistryKey<WaypointStyle> FIGURE = of("figure");
 
 
     public static RegistryKey<WaypointStyle> of(String id) {

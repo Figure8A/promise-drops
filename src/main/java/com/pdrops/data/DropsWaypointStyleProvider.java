@@ -10,6 +10,7 @@ import net.minecraft.data.DataWriter;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.waypoint.WaypointStyle;
+import net.minecraft.world.waypoint.WaypointStyles;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +38,20 @@ public class DropsWaypointStyleProvider implements DataProvider {
                                 PromiseDrops.of("death_face_3"),
                                 PromiseDrops.of("death_face_3"),
                                 PromiseDrops.of("death_face_4")
+                        )
+                )
+        );
+        waypointStyleBiConsumer.accept(
+                CustomWaypointStyles.FIGURE,
+                new WaypointStyleAsset(
+                        128,
+                        332,
+                        List.of(
+                                PromiseDrops.of("figure_0"),
+                                PromiseDrops.of("figure_1"),
+                                PromiseDrops.of("figure_3"),
+                                PromiseDrops.of("figure_3"),
+                                PromiseDrops.of("figure_4")
                         )
                 )
         );

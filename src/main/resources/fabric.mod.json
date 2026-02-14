@@ -3,17 +3,22 @@
 	"id": "promise-drops",
 	"version": "${version}",
 	"name": "Promise Drops",
-	"description": "Drop?",
+	"description": "Adds mini upgrade drops from Pizza Tower No Promises meant to be mixed in with RougeCraft.",
 	"authors": [
-		"Figura",
+		"Figura"
+	],
+	"contributors": [
+		"TheNja09",
 		"Odsters",
-		"TheNja09"
+		"WestCraft15",
+		"MysterLarry",
+		"[[E]]"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Figure8A/promise-drops"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/promise-drops/icon.png",
 	"environment": "*",
 	"entrypoints": {

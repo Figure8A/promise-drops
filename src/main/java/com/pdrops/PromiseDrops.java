@@ -45,10 +45,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class PromiseDrops implements ModInitializer {
 	public static final String MOD_ID = "promise-drops";
@@ -76,13 +74,9 @@ public class PromiseDrops implements ModInitializer {
 		ServerLifecycleEvents.BEFORE_SAVE.register(UpgradeSavesManager::flushSaves);
 		ServerLifecycleEvents.SERVER_STARTED.register(UpgradeSavesManager::readSaves);
 		ServerEntityWorldChangeEvents.AFTER_PLAYER_CHANGE_WORLD.register(this::addRougecraftReset);
-		ServerPlayerEvents.COPY_FROM.register(this::tryAndTeleportDeathFace);
 		ServerLivingEntityEvents.AFTER_DEATH.register(this::tryAddingDeathFace);
 		FabricDefaultAttributeRegistry.register(DropsEntities.DEATH_FACE, DeathFaceEntity.createDeathFaceAttributes());
 		CustomWaypointStyles.init();
-	}
-
-	private void tryAndTeleportDeathFace(ServerPlayerEntity oldPlayer, ServerPlayerEntity newPlayer, boolean alive) {
 	}
 
 	private void tryAddingDeathFace(LivingEntity livingEntity, DamageSource damageSource) {
@@ -99,7 +93,6 @@ public class PromiseDrops implements ModInitializer {
 	public static boolean isOnlyOnePlayerPlaying(List<? extends PlayerEntity> players) {
 		boolean multiplePlayers = players.size() > 1;
 		long count = players.stream().filter(LivingEntity::isInteractable).count();
-
 		//PromiseDrops.LOGGER.info("Players Alive: {}, should spawn death face? {}", count, count == 1);
 		return multiplePlayers && count == 1;
 	}
@@ -134,27 +127,20 @@ public class PromiseDrops implements ModInitializer {
 
 	private void tryToSyncJoinData(ServerPlayerEntity serverPlayerEntity) {
 		getUpgradeContainer(serverPlayerEntity.getEntityWorld()).syncOne(serverPlayerEntity, true);
-	}
+		if (isFigure(serverPlayerEntity)) {
+			serverPlayerEntity.getWaypointConfig().style = CustomWaypointStyles.FIGURE;
+			serverPlayerEntity.getWaypointConfig().color = Optional.of(Colors.WHITE);
+		}
 
+	}
 	public static Identifier of(String id) {
 		return Identifier.of(MOD_ID, id);
 	}
-
 	public static PlayerUpgradeContainer getUpgradeContainer(World world) {
 		return ((IUpgradeGetter) world).getContainer();
 	}
-
 	public static void updatePlayerStatus(ServerPlayerEntity serverPlayerEntity, byte status) {
 		ServerPlayNetworking.send(serverPlayerEntity, new DropsUpdateS2CPacket(status));
-	}
-
-
-	public static Map<RegistryEntry<PlayerUpgrade>, Integer> upgradesToMap(List<PlayerUpgradeInstance> upgrades) {
-		HashMap<RegistryEntry<PlayerUpgrade>, Integer> map = new HashMap<>();
-		for (PlayerUpgradeInstance upgrade : upgrades) {
-			map.put(upgrade.getUpgrade(), upgrade.getLevel());
-		}
-		return map;
 	}
 
 	public static int getColorFromTier(int level) {
@@ -172,8 +158,10 @@ public class PromiseDrops implements ModInitializer {
             default -> Colors.ALTERNATE_WHITE;
         };
 	}
-
 	public static boolean isTheNja09(@Nullable Entity entity) {
 		return entity != null && entity.getUuidAsString().equals("02e52e2d-6c47-466f-98b8-f4e0afb74801");
+	}
+	public static boolean isFigure(@Nullable Entity entity) {
+		return entity != null && entity.getUuidAsString().equals("e0d11d90-6ebc-4125-86d2-80511459c48e");
 	}
 }
