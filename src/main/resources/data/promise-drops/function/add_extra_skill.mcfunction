@@ -1,0 +1,3 @@
+scoreboard players add @s[tag=!garden,tag=!hub,gamemode=!spectator] skillpoints 1
+tellraw @s[tag=!garden,tag=!hub,gamemode=!spectator] {translate:"roguecraft.skillpoint.main",bold:true,italic:false,color:"aqua",with:[{translate:"promise-drops.skillpoint.advancement"},"1",{"score":{"name":"@s","objective":"skillpoints"}}]}
+execute at @s[tag=!garden,tag=!hub,gamemode=!spectator] run playsound minecraft:entity.experience_orb.pickup master @s ~ ~ ~ 1 1.25

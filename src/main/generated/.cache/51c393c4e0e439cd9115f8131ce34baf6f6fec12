@@ -1,0 +1,5 @@
+// 1.21.11	-999999999-01-01T00:00:00	Promise Drops/Drops Damage Gen
+16df58038646252d242bb95c1dee3bed798e7b3c data/minecraft/tags/damage_type/bypasses_armor.json
+16df58038646252d242bb95c1dee3bed798e7b3c data/minecraft/tags/damage_type/bypasses_invulnerability.json
+16df58038646252d242bb95c1dee3bed798e7b3c data/minecraft/tags/damage_type/bypasses_resistance.json
+16df58038646252d242bb95c1dee3bed798e7b3c data/minecraft/tags/damage_type/no_knockback.json

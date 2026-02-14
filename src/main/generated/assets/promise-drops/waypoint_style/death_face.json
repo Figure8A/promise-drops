@@ -1,0 +1,11 @@
+{
+  "far_distance": 12,
+  "near_distance": 6,
+  "sprites": [
+    "promise-drops:death_face_0",
+    "promise-drops:death_face_1",
+    "promise-drops:death_face_3",
+    "promise-drops:death_face_3",
+    "promise-drops:death_face_4"
+  ]
+}

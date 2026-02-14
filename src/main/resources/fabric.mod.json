@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "promise-drops",
+	"version": "${version}",
+	"name": "Promise Drops",
+	"description": "Drop?",
+	"authors": [
+		"Figura",
+		"Odsters",
+		"TheNja09"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/promise-drops/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.pdrops.PromiseDrops"
+		],
+		"fabric-datagen": [
+			"com.pdrops.PromiseDropsDataGenerator"
+		],
+		"client": [
+			"com.pdrops.PromiseDropsClient"
+		]
+	},
+	"mixins": [
+		"promise-drops.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

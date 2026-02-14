@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "package": "com.pdrops.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ExperienceOrbEntityMixin",
+    "LivingEntityMixin",
+    "PlayerEntityMixin",
+    "ServerMixin",
+    "ServerWorldMixin",
+    "WorldMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+    "client.ClientMixin",
+    "client.ClientWorldMixin",
+    "client.IBossBarHudGetter",
+    "client.IPlayerListHudGetter"
+  ]
+}

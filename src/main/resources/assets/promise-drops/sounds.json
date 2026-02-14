@@ -1,0 +1,38 @@
+{
+  "sfx_dropupgrade": {
+    "subtitle": "sounds.promise-drops.sfx_dropupgrade",
+    "sounds": [
+        "promise-drops:sfx_dropupgrade"
+    ]
+  },
+  "sfx_getupgrade": {
+    "subtitle": "sounds.promise-drops.sfx_getupgrade",
+    "sounds": [
+      "promise-drops:sfx_getupgrade"
+    ]
+  },
+  "mu_deathmode": {
+    "subtitle": "sounds.promise-drops.mu_deathmode",
+    "sounds": [
+      "promise-drops:mu_deathmode"
+    ]
+  },
+  "sfx_deathface_laugh": {
+    "subtitle": "sounds.promise-drops.sfx_deathface_laugh",
+    "sounds": [
+      "promise-drops:sfx_deathface_laugh"
+    ]
+  },
+  "mu_deathjam": {
+    "subtitle": "sounds.promise-drops.mu_deathjam",
+    "sounds": [
+      "promise-drops:mu_deathjam"
+    ]
+  },
+  "sfx_killenemy": {
+    "subtitle": "sounds.promise-drops.sfx_killenemy",
+    "sounds": [
+      "promise-drops:sfx_killenemy"
+    ]
+  }
+}
