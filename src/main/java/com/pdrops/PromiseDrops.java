@@ -40,6 +40,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
+import net.minecraft.world.waypoint.WaypointStyle;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +56,8 @@ public class PromiseDrops implements ModInitializer {
 	public static final TrackedDataHandler<PlayerUpgradeCollectionType> UPGRADE_COLLECTION_TYPE = TrackedDataHandler.create(PlayerUpgradeCollectionType.PACKET_CODEC);
 	public static final RegistryKey<World> INFINITE_GARDEN = RegistryKey.of(RegistryKeys.WORLD, Identifier.of("roguecraft", "infinite_garden"));
 	public static final int DARK_GREEN = Suppliers.memoize(() -> new Color(Colors.GREEN).darker().getRGB()).get();
+	public static final Map<String, RegistryKey<WaypointStyle>> UUID_WAYPOINT_MAP = new HashMap<>();
+
 
 	@Override
 	public void onInitialize() {
@@ -127,11 +130,17 @@ public class PromiseDrops implements ModInitializer {
 
 	private void tryToSyncJoinData(ServerPlayerEntity serverPlayerEntity) {
 		getUpgradeContainer(serverPlayerEntity.getEntityWorld()).syncOne(serverPlayerEntity, true);
-		if (isFigure(serverPlayerEntity)) {
-			serverPlayerEntity.getWaypointConfig().style = CustomWaypointStyles.FIGURE;
-			serverPlayerEntity.getWaypointConfig().color = Optional.of(Colors.WHITE);
+		for (var entry : UUID_WAYPOINT_MAP.entrySet()) {
+			if (entry.getKey().matches(serverPlayerEntity.getUuidAsString())) {
+				serverPlayerEntity.getWaypointConfig().style = entry.getValue();
+				serverPlayerEntity.getWaypointConfig().color = Optional.of(Colors.WHITE);
+			}
 		}
 
+//		if (isFigure(serverPlayerEntity)) {
+//			serverPlayerEntity.getWaypointConfig().style = CustomWaypointStyles.FIGURE;
+//			serverPlayerEntity.getWaypointConfig().color = Optional.of(Colors.WHITE);
+//		}
 	}
 	public static Identifier of(String id) {
 		return Identifier.of(MOD_ID, id);
@@ -164,4 +173,6 @@ public class PromiseDrops implements ModInitializer {
 	public static boolean isFigure(@Nullable Entity entity) {
 		return entity != null && entity.getUuidAsString().equals("e0d11d90-6ebc-4125-86d2-80511459c48e");
 	}
+
+
 }

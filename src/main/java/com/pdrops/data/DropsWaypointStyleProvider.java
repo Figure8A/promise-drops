@@ -41,25 +41,23 @@ public class DropsWaypointStyleProvider implements DataProvider {
                         )
                 )
         );
-        waypointStyleBiConsumer.accept(
-                CustomWaypointStyles.FIGURE,
-                new WaypointStyleAsset(
-                        128,
-                        332,
-                        List.of(
-                                PromiseDrops.of("figure_0"),
-                                PromiseDrops.of("figure_1"),
-                                PromiseDrops.of("figure_3"),
-                                PromiseDrops.of("figure_3"),
-                                PromiseDrops.of("figure_4")
-                        )
-                )
+        funny(waypointStyleBiConsumer, CustomWaypointStyles.FIGURE, "figure");
+        funny(waypointStyleBiConsumer, CustomWaypointStyles.NJA, "nja");
+        funny(waypointStyleBiConsumer, CustomWaypointStyles.ODSTERS, "odsters");
+        funny(waypointStyleBiConsumer, CustomWaypointStyles.WEST, "west");
+    }
+    public static void funny(BiConsumer<RegistryKey<WaypointStyle>, WaypointStyleAsset> waypointStyleBiConsumer, RegistryKey<WaypointStyle> waypoint, String name) {
+        waypointStyleBiConsumer.accept(waypoint, new WaypointStyleAsset(128, 332, List.of(
+                PromiseDrops.of( name + "_0"),
+                PromiseDrops.of(name + "_1"),
+                PromiseDrops.of(name + "_2"),
+                PromiseDrops.of(name + "_3")))
         );
     }
 
     @Override
     public CompletableFuture<?> run(DataWriter writer) {
-        Map<RegistryKey<WaypointStyle>, WaypointStyleAsset> map = new HashMap();
+        Map<RegistryKey<WaypointStyle>, WaypointStyleAsset> map = new HashMap<>();
         bootstrap((key, asset) -> {
             if (map.putIfAbsent(key, asset) != null) {
                 throw new IllegalStateException("Tried to register waypoint style twice for id: " + key);
