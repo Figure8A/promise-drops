@@ -95,18 +95,20 @@ public class PromiseDrops implements ModInitializer {
 
 	public static boolean isOnlyOnePlayerPlaying(List<? extends PlayerEntity> players) {
 		boolean multiplePlayers = players.size() > 1;
-		long count = players.stream().filter(LivingEntity::isInteractable).count();
+		long count = players.stream()
+				.filter(player ->  !isRougecraftWorld(player.getEntityWorld()))
+				.filter(LivingEntity::isInteractable).count();
 		//PromiseDrops.LOGGER.info("Players Alive: {}, should spawn death face? {}", count, count == 1);
 		return multiplePlayers && count == 1;
 	}
 	public static boolean allPlayersDead(List<? extends PlayerEntity> players) {
-		return players.stream().filter(LivingEntity::isInteractable).count() == 0;
+		return players.stream().filter(player ->  !isRougecraftWorld(player.getEntityWorld())).filter(LivingEntity::isInteractable).count() == 0;
 	}
 
 
 	private void addRougecraftReset(ServerPlayerEntity player, ServerWorld origin, ServerWorld destination) {
 		PromiseDrops.LOGGER.info("World? {}", destination.getRegistryKey());
-		if (isRougecraftWorld(destination)) {
+		if (isRougecraftWorld(destination) && allPlayersInRougeWorld(player)) {
 			PlayerUpgradeContainer upgradeContainer = getUpgradeContainer(origin);
 			upgradeContainer.resetUpgrades();
 			upgradeContainer.markDirty();
@@ -123,6 +125,16 @@ public class PromiseDrops implements ModInitializer {
 
 
 	}
+	private boolean allPlayersInRougeWorld(ServerPlayerEntity serverPlayerEntity) {
+		for (var s : serverPlayerEntity.getEntityWorld().getServer().getPlayerManager().getPlayerList()) {
+			if (!isRougecraftWorld(s.getEntityWorld())) {
+				return false;
+			}
+		}
+		PromiseDrops.LOGGER.info("All players in hub.");
+		return true;
+	}
+
 
 	public static boolean isRougecraftWorld(World world) {
 		return world.getRegistryKey().equals(INFINITE_GARDEN);

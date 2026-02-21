@@ -4,6 +4,7 @@
   "entity.promise-drops.death_face": "Death Face",
   "sounds.promise-drops.sfx_deathface_laugh": "A Death Face draws near",
   "death.attack.death_face": "%1$s failed to quick restart",
+  "death.attack.death_face.player": "%1$s failed to quick restart",
   "promise-drops.skillpoint.advancement": "Upgrade Collectable",
   "sounds.promise-drops.sfx_killenemy": "An upgrade got killed",
   "upgrade.name.armor": "Base Armor ↑!",

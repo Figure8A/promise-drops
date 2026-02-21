@@ -116,11 +116,11 @@ public class DeathFaceEntity extends LivingEntity {
             double d = vec3d.lengthSquared();
             double e = 5.0 - Math.sqrt(d) / 1.2f;
             //PromiseDrops.LOGGER.info("d {}", this.getTarget().distanceTo(this));
-            float value = 0.8999f;
+            float value = 0.8849f;
             float v = this.getTarget().distanceTo(this);
             if (v < 8f) {
                 e = 2.0 - Math.sqrt(d) / 5.0;
-                value = 0.959f;
+                value = 0.939f;
             }
 
             this.setVelocity(this.getVelocity().multiply(value)

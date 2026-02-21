@@ -94,6 +94,7 @@ public class PlayerUpgradeContainer {
         if (!merged) {
             this.getUpgrades().addFirst(newUpgrade);
         }
+
         this.markDirty();
     }
 
